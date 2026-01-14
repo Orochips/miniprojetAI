@@ -33,8 +33,8 @@ embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 # TODO: use your organization id here. (by default, org id is your username)
-my_activeloop_org_id = "didogrigorov"
-my_activeloop_dataset_name = "jetbrains_article_dataset"
+my_activeloop_org_id = "noamaneoel"
+my_activeloop_dataset_name = "aiDataset"
 dataset_path = f"hub://{my_activeloop_org_id}/{my_activeloop_dataset_name}"
 db = DeepLake(dataset_path=dataset_path, embedding_function=embeddings)
 
