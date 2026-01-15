@@ -81,11 +81,12 @@ print("\n📊 Vérification:")
 print(f"  Première question: {ds.question[0].numpy()[:100]}...")
 
 
-'''#Adding authoritative sources via sitemap
+#Adding authoritative sources via sitemap
 sitemaps=["https://www.jmir.org/sitemap.xml","https://medlineplus.gov/sitemap.xml","https://revues.imist.ma/index.php/ReMaDiP/sitemap/"]
-mayo_urls=SitemapLoader(web_path=[url for url in sitemaps],filter_urls="insert keyword variable based on user input here")[:200]''
-'''
-'''#storing pages from sitemap into a variable
+mayo_urls=SitemapLoader(web_path=[url for url in sitemaps],filter_urls="insert keyword variable based on user input here")[:200]
+
+#storing pages from sitemap into a variable
 mayo_docs=mayo_urls.load()
 print(f"Loaded {len(mayo_docs)} documents from sitemaps")
-'''
+for doc in mayo_docs[:2]:
+    print(doc.page_content[:500])  # Print the first 500 characters of the first 2 documents
