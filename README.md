@@ -564,4 +564,3 @@ docker run -p 5000:5000 -e ACTIVELOOP_TOKEN=your-token medical-chatbot
    gunicorn -w 4 -b 0.0.0.0:5000 chatbot_flask:app
    ```
 
-2. **Add Rate Limiting**:
