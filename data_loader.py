@@ -1,12 +1,9 @@
-#importing langchain document,sitemap loader
-from langchain_community.document_loaders import WebBaseLoader,SitemapLoader
-
-#importing dataset(organized medical questions and answers) loader 
+#importing dependencies(langchain document,sitemap loader ...)
+from langchain_community.document_loaders import SitemapLoader
+import config
 import kagglehub
 import pandas as pd
 import os
-
-#import kagglehub
 import json
 import deeplake
 
@@ -37,9 +34,10 @@ def load_and_upload_to_activeloop(
     # ========== ÉTAPE 2 : Créer le dataset ActiveLoop ==========
     print("🔮 Création du dataset ActiveLoop...")
     
-    ds = deeplake.empty(deeplake_path, overwrite=True)
+    ds = deeplake.empty(deeplake_path, overwrite=True,token=config.token)
     
     # Définir le schéma
+
     ds.create_tensor('text', htype='text')
     ds.create_tensor('question', htype='text')
     ds.create_tensor('answer', htype='text')
@@ -75,7 +73,7 @@ def load_and_upload_to_activeloop(
 
 # ========== UTILISATION ==========
 
-# Remplace par ton username ActiveLoop
+
 ds = load_and_upload_to_activeloop()
 
 # Vérifier
@@ -83,10 +81,11 @@ print("\n📊 Vérification:")
 print(f"  Première question: {ds.question[0].numpy()[:100]}...")
 
 
-#Adding authoritative sources via sitemap
+'''#Adding authoritative sources via sitemap
 sitemaps=["https://www.jmir.org/sitemap.xml","https://medlineplus.gov/sitemap.xml","https://revues.imist.ma/index.php/ReMaDiP/sitemap/"]
-mayo_urls=SitemapLoader(web_path=[url for url in sitemaps],filter_urls="insert keyword variable based on user input here")[:200]
-
-#storing pages from sitemap into a variable
+mayo_urls=SitemapLoader(web_path=[url for url in sitemaps],filter_urls="insert keyword variable based on user input here")[:200]''
+'''
+'''#storing pages from sitemap into a variable
 mayo_docs=mayo_urls.load()
 print(f"Loaded {len(mayo_docs)} documents from sitemaps")
+'''

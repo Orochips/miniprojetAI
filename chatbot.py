@@ -12,6 +12,7 @@ from langchain_community.document_loaders import SeleniumURLLoader
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
+import config
 
 articles = ['https://www.digitaltrends.com/computing/claude-sonnet-vs-gpt-4o-comparison/',
            'https://www.digitaltrends.com/computing/apple-intelligence-proves-that-macbooks-need-something-more/',
@@ -36,7 +37,7 @@ embeddings = HuggingFaceEmbeddings(
 my_activeloop_org_id = "noamaneoel"
 my_activeloop_dataset_name = "aiDataset"
 dataset_path = f"hub://{my_activeloop_org_id}/{my_activeloop_dataset_name}"
-db = DeepLake(dataset_path=dataset_path, embedding_function=embeddings)
+db = DeepLake(dataset_path=dataset_path, embedding_function=embeddings,token=config.token)
 
 
 # add documents to our Deep Lake dataset
